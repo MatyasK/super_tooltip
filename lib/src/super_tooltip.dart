@@ -49,6 +49,7 @@ class SuperTooltip extends StatefulWidget {
   final EdgeInsetsGeometry overlayDimensions;
   final EdgeInsetsGeometry bubbleDimensions;
   final bool hideTooltipOnTap;
+  final bool autoPosition;
 
   //filter
   final bool showDropBoxFilter;
@@ -116,6 +117,7 @@ class SuperTooltip extends StatefulWidget {
     this.sigmaX = 5.0,
     this.sigmaY = 5.0,
     this.showDropBoxFilter = false,
+    this.autoPosition = false,
   })  : assert(showDropBoxFilter ? showBarrier ?? false : true),
         super(key: key);
 
@@ -279,6 +281,16 @@ class _SuperTooltipState extends State<SuperTooltip>
         // overlay is null - set default values
         preferredDirection = TooltipDirection.left;
         left = 0.0;
+      }
+    } else if (widget.autoPosition) {
+      if (overlay != null) {
+        if (target.dy > overlay.size.center(Offset.zero).dy) {
+          preferredDirection = TooltipDirection.up;
+        } else {
+          preferredDirection = TooltipDirection.down;
+        }
+      } else {
+        preferredDirection = TooltipDirection.down;
       }
     }
 
