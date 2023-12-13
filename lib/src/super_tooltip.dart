@@ -18,10 +18,10 @@ class SuperTooltip extends StatefulWidget {
   final void Function()? onHide;
   final bool snapsFarAwayVertically;
   final bool snapsFarAwayHorizontally;
-  final bool? hasShadow;
-  final Color? shadowColor;
-  final double? shadowBlurRadius;
-  final double? shadowSpreadRadius;
+  final bool hasShadow;
+  final Color shadowColor;
+  final double shadowBlurRadius;
+  final double shadowSpreadRadius;
   final double? top, right, bottom, left;
   final ShowCloseButton? showCloseButton;
   final Color? closeButtonColor;
@@ -41,8 +41,8 @@ class SuperTooltip extends StatefulWidget {
   final double arrowTipDistance;
   final double borderRadius;
   final double borderWidth;
-  final bool? showBarrier;
-  final Color? barrierColor;
+  final bool showBarrier;
+  final Color barrierColor;
   final Rect? touchThroughArea;
   final ClipAreaShape touchThroughAreaShape;
   final double touchThroughAreaCornerRadius;
@@ -64,17 +64,17 @@ class SuperTooltip extends StatefulWidget {
     this.onLongPress,
     this.onShow,
     this.onHide,
-    this.showCloseButton,
-    this.closeButtonColor,
-    this.closeButtonSize,
-    this.showBarrier,
-    this.barrierColor,
+    this.showCloseButton = ShowCloseButton.none,
+    this.closeButtonColor = Colors.black,
+    this.closeButtonSize = 30.0,
+    this.showBarrier = true,
+    this.barrierColor = Colors.black54,
     this.snapsFarAwayVertically = false,
     this.snapsFarAwayHorizontally = false,
-    this.hasShadow,
-    this.shadowColor,
-    this.shadowBlurRadius,
-    this.shadowSpreadRadius,
+    this.hasShadow = true,
+    this.shadowColor = Colors.black54,
+    this.shadowBlurRadius = 10.0,
+    this.shadowSpreadRadius = 5.0,
     this.top,
     this.right,
     this.bottom,
@@ -185,15 +185,15 @@ class _SuperTooltipState extends State<SuperTooltip>
 
   @override
   Widget build(BuildContext context) {
-    showCloseButton = widget.showCloseButton ?? ShowCloseButton.none;
-    closeButtonColor = widget.closeButtonColor ?? Colors.black;
-    closeButtonSize = widget.closeButtonSize ?? 30.0;
-    showBarrier = widget.showBarrier ?? true;
-    barrierColor = widget.barrierColor ?? Colors.black54;
-    hasShadow = widget.hasShadow ?? true;
-    shadowColor = widget.shadowColor ?? Colors.black54;
-    shadowBlurRadius = widget.shadowBlurRadius ?? 10.0;
-    shadowSpreadRadius = widget.shadowSpreadRadius ?? 5.0;
+    showCloseButton = widget.showCloseButton;
+    closeButtonColor = widget.closeButtonColor;
+    closeButtonSize = widget.closeButtonSize;
+    showBarrier = widget.showBarrier;
+    barrierColor = widget.barrierColor;
+    hasShadow = widget.hasShadow;
+    shadowColor = widget.shadowColor;
+    shadowBlurRadius = widget.shadowBlurRadius;
+    shadowSpreadRadius = widget.shadowSpreadRadius;
     showBlur = widget.showDropBoxFilter;
 
     return CompositedTransformTarget(
@@ -239,7 +239,7 @@ class _SuperTooltipState extends State<SuperTooltip>
       -target.dx + size.width / 2,
       -target.dy + size.height,
     );
-    
+
     final backgroundColor =
         widget.backgroundColor ?? Theme.of(context).cardColor;
 
