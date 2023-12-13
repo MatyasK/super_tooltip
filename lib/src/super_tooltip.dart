@@ -234,10 +234,12 @@ class _SuperTooltipState extends State<SuperTooltip>
       parent: _animationController,
       curve: Curves.fastOutSlowIn,
     );
+
     final offsetToTarget = Offset(
       -target.dx + size.width / 2,
-      -target.dy + size.height / 2,
+      -target.dy + size.height,
     );
+    
     final backgroundColor =
         widget.backgroundColor ?? Theme.of(context).cardColor;
 
