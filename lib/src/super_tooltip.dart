@@ -235,11 +235,6 @@ class _SuperTooltipState extends State<SuperTooltip>
       curve: Curves.fastOutSlowIn,
     );
 
-    final offsetToTarget = Offset(
-      -target.dx + size.width / 2,
-      -target.dy + size.height,
-    );
-
     final backgroundColor =
         widget.backgroundColor ?? Theme.of(context).cardColor;
 
@@ -295,6 +290,13 @@ class _SuperTooltipState extends State<SuperTooltip>
         preferredDirection = TooltipDirection.down;
       }
     }
+
+    final offsetToTarget = Offset(
+      -target.dx + size.width / 2,
+      preferredDirection == TooltipDirection.down
+          ? -target.dy + size.height
+          : -target.dy,
+    );
 
     _barrierEntry = showBarrier
         ? OverlayEntry(
